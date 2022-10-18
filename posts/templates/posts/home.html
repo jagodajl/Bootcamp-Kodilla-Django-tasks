@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "posts/base.html" %}
 
-</body>
-</html>
+{% block title %}Posts list{% endblock %}
+
+{% block content %}
+    <p><a href="{% url "posts:posts_list" %}">lista postów</p>
+    <p><a href="{% url "posts:authors_list" %}">lista autorów</p>
+{% endblock %}

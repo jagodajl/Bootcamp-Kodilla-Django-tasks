@@ -1,5 +1,5 @@
-# Create your views here.
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.contrib import messages
 
 from posts.models import Post, Author
@@ -13,44 +13,6 @@ def homepage(request):
     )
 
 
-def authors_list(request):
-    if request.method == "POST":
-        form = AuthorForm(data=request.POST)
-
-        if form.is_valid():
-            form.save()
-            messages.add_message(
-                request,
-                messages.SUCCESS,
-                "You have successfully created a new author."
-            )
-        else:
-            messages.add_message(
-                request,
-                messages.ERROR,
-                form.errors['__all__']
-            )
-    elif request.method == "GET":
-        form = AuthorForm()
-        authors = Author.objects.all()
-        return render(
-            request=request,
-            template_name="posts/authors_list.html",
-            context={"authors": authors,
-                     "form": form
-                     }
-        )
-
-
-def author_details(request, id):
-    author = Author.objects.get(id=id)
-    return render(
-        request=request,
-        template_name="posts/author_details.html",
-        context={"author": author}
-    )
-
-
 def posts_list(request):
     if request.method == "POST":
         form = PostForm(data=request.POST)
@@ -60,7 +22,7 @@ def posts_list(request):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                "You have successfully created a new post!"
+                "A new post has been created."
             )
         else:
             messages.add_message(
@@ -86,4 +48,42 @@ def post_details(request, id):
         request=request,
         template_name="posts/post_details.html",
         context={"post": post}
+    )
+
+
+def authors_list(request):
+    if request.method == "POST":
+        form = AuthorForm(data=request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                "A new author has been created."
+            )
+        else:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                form.errors['__all__']
+            )
+    elif request.method == "GET":
+        form = AuthorForm()
+        authors = Author.objects.all()
+        return render(
+            request=request,
+            template_name="posts/authors_list.html",
+            context={"authors": authors,
+                     "form": form
+                     }
+        )
+
+
+def author_details(request, id):
+    author = Author.objects.get(id=id)
+    return render(
+        request=request,
+        template_name="posts/author_details.html",
+        context={"author": author}
     )
