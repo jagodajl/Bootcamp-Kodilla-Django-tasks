@@ -1,6 +1,6 @@
-# maths/urls.py
+from django.contrib import admin
 from django.urls import path
-from maths.views import math, add, sub, mul, div
+from maths.views import math, add, sub, mul, div, maths_list, math_details, results_list
 
 app_name = "maths"
 urlpatterns = [
@@ -9,4 +9,7 @@ urlpatterns = [
     path('sub/<a>/<b>', sub),
     path('mul/<a>/<b>', mul),
     path('div/<a>/<b>', div),
+    path('histories/', maths_list, name="list"),
+    path('histories/<int:id>', math_details, name="details"),
+    path('results/', results_list, name="results"),
 ]
