@@ -1,5 +1,6 @@
 from django.db import models
 
+# Create your models here.
 OPERATION_CHOICES = (
     ("add", "add"),
     ("sub", "sub"),
@@ -23,6 +24,9 @@ class Math(models.Model):
     def __str__(self):
         return f"id:{self.id}, a={self.a}, b={self.b}, op={self.operation}"
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Result(models.Model):
     value = models.FloatField(blank=True, null=True, unique=True)
@@ -33,11 +37,7 @@ class Result(models.Model):
         unique=True
     )
 
-    def __str__(self):
-        return f"value: {self.value} | error: {self.error}"
-
     class Meta:
-        ordering = ["-id"]
         constraints = [
             models.CheckConstraint(
                 name="%(app_label)s_%(class)s_value_error_together",
@@ -53,3 +53,6 @@ class Result(models.Model):
                 ),
             )
         ]
+
+    def __str__(self):
+        return f"value: {self.value} | error: {self.error}"

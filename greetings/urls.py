@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from greetings.views import welcome, about, contact
+from greetings.views import welcome
 
 urlpatterns = [
     path('', welcome, name="welcome"),
