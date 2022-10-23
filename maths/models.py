@@ -37,6 +37,7 @@ class Result(models.Model):
         return f"value: {self.value} | error: {self.error}"
 
     class Meta:
+        ordering = ["-id"]
         constraints = [
             models.CheckConstraint(
                 name="%(app_label)s_%(class)s_value_error_together",

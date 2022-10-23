@@ -1,11 +1,10 @@
-
-
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 
 from maths.models import Math, Result
 from maths.forms import ResultForm
+from django.core.paginator import Paginator
 
 
 def math(request):
@@ -14,7 +13,7 @@ def math(request):
 
 def add(request, a, b):
     a, b = int(a), int(b)
-    wynik = a+b
+    wynik = a + b
     c = {"a": a, "b": b, "operacja": "+", "wynik": wynik}
     result = Result.objects.get_or_create(value=wynik)[0]
     Math.objects.create(operation='add', a=a, b=b, result=result)
@@ -27,7 +26,7 @@ def add(request, a, b):
 
 def sub(request, a, b):
     a, b = int(a), int(b)
-    wynik = a-b
+    wynik = a - b
     c = {"a": a, "b": b, "operacja": "-", "wynik": wynik}
     result = Result.objects.get_or_create(value=wynik)[0]
     Math.objects.create(operation='sub', a=a, b=b, result=result)
@@ -40,7 +39,7 @@ def sub(request, a, b):
 
 def mul(request, a, b):
     a, b = int(a), int(b)
-    wynik = a*b
+    wynik = a * b
     c = {"a": a, "b": b, "operacja": "*", "wynik": wynik}
     result = Result.objects.get_or_create(value=wynik)[0]
     Math.objects.create(operation='mul', a=a, b=b, result=result)
@@ -71,6 +70,9 @@ def div(request, a, b):
 
 def maths_list(request):
     maths = Math.objects.all()
+    paginator = Paginator(maths, 5)
+    page_number = request.GET.get('page')
+    maths = paginator.get_page(page_number)
     return render(
         request=request,
         template_name="maths/list.html",
