@@ -6,7 +6,7 @@ class PostAuthorModelTest(TestCase):
     def setUp(self):
         Author.objects.create(nick='t_testowy', email='test.testowy@hogwarts.com', bio='test bio')
         self.a1 = Author.objects.get(nick='t_testowy')
-        Post.objects.create(title='title test', content='content test', author_id=self.a1)
+        Post.objects.create(title='title test', content='content test', author_id=1)
 
     def test_author(self):
         self.assertEqual(str(self.a1), 'nick: t_testowy, email: test.testowy@hogwarts.com, bio: test bio')

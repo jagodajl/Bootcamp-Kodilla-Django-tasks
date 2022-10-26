@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-9*$cqa@96(v#htiym_ck0ewx9o1a8^p*phfd_-3l3igje1&#y5
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'maths',
     'greetings',
     'posts',
+    'books'
 ]
 
 MIDDLEWARE = [
@@ -58,8 +62,7 @@ ROOT_URLCONF = 'dingo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

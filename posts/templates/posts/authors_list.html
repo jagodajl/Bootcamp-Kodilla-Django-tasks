@@ -1,18 +1,21 @@
-{% extends "posts/base.html" %}
+{% extends "main.html" %}
 
 {% block title %}Authors list{% endblock %}
 
 {% block content %}
-    <ol>
-        {% for a in authors %}
-            <li><a href="{% url "posts:author_details" a.id %}">{{ a }}</a></li>
-        {% endfor %}
-    </ol>
+    <h1>Existing authors</h1>
 
-    <p>Here you can add a new author</p>
+    <ul>
+        {% for m in authors %}
+            {# <li><a href="/posts/authors_list/{{ m.id }}">{{ m  }}</a></li> #}
+            <li><a href="{% url "posts:author_details" m.id %}">{{ m }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <h1>Create a new author!</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Dodaj">
+        <input type="submit" value="New author">
     </form>
 {% endblock %}

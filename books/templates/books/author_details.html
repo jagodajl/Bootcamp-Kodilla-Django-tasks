@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+
+{% block title %}Authors list{% endblock %}
+
+{% block content %}
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <td>{{ author.name }}</td>
+        </tr>
+        <tr>
+            <th>Lastname</th>
+            <td>{{ author.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Nick</th>
+            <td>{{ author.nick }}</td>
+        </tr>
+        <tr>
+            <th>Autho's books</th>
+            <td>
+                {% for book in books %}
+                    <br>
+                    {{ book.title }}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <a href="{% url "books:authors_list" %}">back</a>
+{% endblock %}

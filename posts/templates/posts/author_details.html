@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "main.html" %}
 
-</body>
-</html>
+{% block title %}Authors list{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Nick</th>
+            <td>{{ author.nick }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ author.email }}</td>
+        </tr>
+        </tr>
+    </table>
+    <a href="{% url "posts:authors_list" %}">back</a>
+{% endblock %}

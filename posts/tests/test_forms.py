@@ -22,7 +22,7 @@ class PostFormTest(TestCase):
         form = PostForm(data=data)
         self.assertTrue(form.is_valid())
         Post.objects.get_or_create(**form.cleaned_data)
-        p = Post.objects.get(title=data['title test'], content=data['content test'], author_id=data['author_id'])
+        p = Post.objects.get(title=data['title'], content=data['content test'], author_id=data['author_id'])
         self.assertIsInstance(p, Post)
         self.DataBaseObjectsId(p)
         self.assertEqual(p.content, 'content test')

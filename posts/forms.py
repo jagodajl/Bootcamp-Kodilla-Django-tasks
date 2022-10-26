@@ -7,10 +7,10 @@ AUTHORS_CHOICES = ()
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ["author", "title", "content"]
+        fields = ["title", "content", "author_id", "image", "tags"]
 
 
 class AuthorForm(forms.ModelForm):
     class Meta:
         model = Author
-        fields = ["nick", "email", "bio"]
+        fields = ["nick", "email"]

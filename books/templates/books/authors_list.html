@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+
+{% block title %}Authors list{% endblock %}
+
+{% block content %}
+    <h1>Existing authors</h1>
+
+    <ul>
+        {% for m in authors %}
+            {# <li><a href="/books/authors_list/{{ m.id }}">{{ m  }}</a></li> #}
+            <li><a href="{% url "books:author_details" m.id %}">{{ m }}</a></li>
+        {% endfor %}
+    </ul>
+    <!--Pagination-->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if authors.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ authors.previous_page_number }}">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+                </li>
+            {% endif %}
+            {% for i in authors.paginator.page_range %}
+                {% if authors.number == i %}
+                    <li class="page-item active" aria-current="page">
+            <span class="page-link">
+            {{ i }}
+            <span class="sr-only">(current)</span>
+            </span>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if authors.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ authors.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <!--end of Pagination-->
+{% endblock %} 
