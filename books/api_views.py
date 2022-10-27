@@ -8,7 +8,7 @@ class BookViewset(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-
+#zadanie2, czesc 1
 class AuthorViewset(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer

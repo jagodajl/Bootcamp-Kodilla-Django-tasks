@@ -2,13 +2,13 @@ from rest_framework import serializers
 
 from books.models import Book, Borrow, Author, Tag
 
-
+#zadanie2, czesc 1
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('id', 'title', 'number_of_pages', 'description', 'added', 'cover', 'author', 'tags')
 
-
+#zadanie2, czesc 1
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
