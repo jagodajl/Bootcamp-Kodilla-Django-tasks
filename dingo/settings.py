@@ -126,6 +126,7 @@ USE_TZ = True
 import os.path
 import sys
 
+
 PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
